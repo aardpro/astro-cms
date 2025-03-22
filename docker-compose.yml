@@ -13,7 +13,7 @@ services:
         condition: service_healthy
     ports:
       # 端口映射，你可以把8103改成你向外网暴露的端口比如80
-      - "3000:3000"
+      - "8103:3000"
     networks:
       - astro-cms-net
     volumes:
@@ -21,6 +21,8 @@ services:
 
   postgres:
     image: postgres:15
+    # 也可以改成国内镜像，如:
+    # image: docker.1ms.run/library/postgres:15
     environment:
       POSTGRES_USER: aardpro
       POSTGRES_PASSWORD: aardpro_pass
@@ -35,8 +37,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    ports:
-      - "5432:5432"
 
 volumes:
   postgres_data:

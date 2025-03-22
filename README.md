@@ -8,7 +8,7 @@
 git clone https://github.com/aardpro/astro-cms.git
 cd astro-cms
 docker compose up -d
-# 然后通过 http://127.0.0.1:3000访问
+# 然后通过 http://127.0.0.1:8103访问
 # 管理员账号：admin
 # 管理员初始密码：admin
 ```
