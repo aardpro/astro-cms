@@ -1,0 +1,19 @@
+{
+  "name": "astro-cms",
+  "version": "1.0.0",
+  "keywords": [
+    "astro",
+    "seo-friendly",
+    "responsive-blog",
+    "cms",
+    "static-site",
+    "博客系统",
+    "SEO优化",
+    "内容管理系统",
+    "响应式设计",
+    "Astro框架"
+  ],
+  "author": "aardpro",
+  "license": "MIT",
+  "description": "A SEO-friendly, Astro-based responsive blog/CMS system with optimized content management. | 一个基于 Astro 开发的 SEO 友好、响应式博客/内容管理系统。"
+}

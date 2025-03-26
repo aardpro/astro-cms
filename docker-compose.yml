@@ -1,0 +1,47 @@
+version: '3.9'
+services:
+  astro-cms:
+    image: aardpro/astro-cms:latest
+    environment:
+      DATABASE_URL: postgresql://aardpro:aardpro_pass@postgres:5432/aardpro_blog
+      NODE_ENV: "production"
+      # 代理设置
+      # http_proxy: "http://127.0.0.1:7890"
+      # https_proxy: "http://127.0.0.1:7890"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      # 端口映射，你可以把8103改成你向外网暴露的端口比如80
+      - "8103:3000"
+    networks:
+      - astro-cms-net
+    volumes:
+      - store_data:/app/store-data
+
+  postgres:
+    image: postgres:15
+    # 也可以改成国内镜像，如:
+    # image: docker.1ms.run/library/postgres:15
+    environment:
+      POSTGRES_USER: aardpro
+      POSTGRES_PASSWORD: aardpro_pass
+      POSTGRES_DB: aardpro_blog
+      PGUSER: aardpro
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - astro-cms-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aardpro -d aardpro_blog"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  store_data:
+
+networks:
+  astro-cms-net:
+    driver: bridge
